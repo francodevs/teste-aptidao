@@ -1,0 +1,36 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10.19.0
+
+    working_directory: ~/teste-aptidao
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - dependencies-{{ .Branch }}
+
+      - run:
+          name: Install Node dependencies
+          command: yarn
+
+      - save_cache:
+          key: dependencies-{{ .Branch }}
+          paths:
+            - ./node_modules
+
+      - run:
+          name: Build project
+          command: yarn build
+
+      - run:
+          name: Unit tests
+          command: yarn test:unit
+
+workflows:
+  build_and_test:
+    jobs:
+      - build
