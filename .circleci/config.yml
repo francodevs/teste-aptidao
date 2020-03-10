@@ -12,9 +12,9 @@ jobs:
         - /test\/.*/
 
     docker:
-      - image: circleci/node:10.15.3
+      - image: circleci/node:10.19.0
 
-    working_directory: ~/maple-bear-controle-de-saida-pwa
+    working_directory: ~/teste-aptidao
 
     steps:
       - checkout
