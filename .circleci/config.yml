@@ -1,16 +1,6 @@
-version: 2
+version: 2.1
 jobs:
   build:
-    branches:
-      only:
-        - dev
-        - master
-        - /feature\/.*/
-        - /ci\/.*/
-        - /refactor\/.*/
-        - /fix\/.*/
-        - /test\/.*/
-
     docker:
       - image: circleci/node:10.19.0
 
@@ -41,8 +31,6 @@ jobs:
           command: yarn test:unit
 
 workflows:
-  # Name the workflow "welcome"
-  test-build:
-    # Run the welcome/run job in its own container
+  build_and_test:
     jobs:
       - build/run
