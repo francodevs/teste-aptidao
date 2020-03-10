@@ -39,3 +39,10 @@ jobs:
       - run:
           name: Unit tests
           command: yarn test:unit
+
+workflows:
+  # Name the workflow "welcome"
+  test-build:
+    # Run the welcome/run job in its own container
+    jobs:
+      - build/run
